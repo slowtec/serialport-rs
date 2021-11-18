@@ -42,7 +42,7 @@ use crate::{Result, SerialPortInfo};
 fn udev_property_as_string(d: &libudev::Device, key: &str) -> Option<String> {
     d.property_value(key)
         .and_then(OsStr::to_str)
-        .map_or(None, |s| Some(s.to_string()))
+        .map(|s| s.to_string())
 }
 
 /// Retrieves the udev property value named by `key`. This function assumes that the retrieved
